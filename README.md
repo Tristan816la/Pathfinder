@@ -1,4 +1,4 @@
-# This is supposed to be the tasklist that I should finish
+# Tasklist
 ## TODO:
 - Connect grid using redux 
 - Update Wall in grid using redux
