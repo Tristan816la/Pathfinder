@@ -1,4 +1,4 @@
-# How to run this?
+# How to run this project?
 1. Clone the repo
 2. Run the following commands
 ```
