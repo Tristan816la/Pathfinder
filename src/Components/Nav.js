@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
 import { Icon } from './Icon';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
 		background: 'black'
 	},
 	navText: {
-		alignSelf: 'flex-end'
+		alignSelf: 'flex-end',
+		color: 'white',
+		fontFamily: 'Roboto'
 	}
 }));
 
@@ -28,17 +30,17 @@ const Nav = () => {
 		<div className={classes.root}>
 			<AppBar position="static" className={classes.nav}>
 				<div />
-				<Icon image="git.svg" />
+				<Icon image="git.svg" tip="go to my git repo" />
 				{[ ...Array(placeHolders) ].map((e, i) => <div key={i} />)}
-				<Typography variant="h6" className={classes.navText}>
+				<Button variant="h6" className={classes.navText}>
 					Clear path
-				</Typography>
-				<Typography variant="h6" className={classes.navText}>
+				</Button>
+				<Button variant="h6" className={classes.navText}>
 					Clear all
-				</Typography>
-				<Typography variant="h6" className={classes.navText}>
+				</Button>
+				<Button variant="h6" className={classes.navText}>
 					Walkthrough
-				</Typography>
+				</Button>
 			</AppBar>
 		</div>
 	);

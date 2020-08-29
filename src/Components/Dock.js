@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from './Icon';
-import { DijkstraFind } from '../Algorithms/Dijkstra';
+import { connect } from 'react-redux';
+import { dijkstra } from '../redux/actions';
 
 const dockStyle = {
 	display: 'flex',
@@ -13,17 +14,43 @@ const dockStyle = {
 	left: '10vw'
 };
 
-const Dock = () => {
+const Dock = (props) => {
+	const [ grid, setGrid ] = useState(props.grid);
+	const [ start, setStart ] = useState(false);
+
+	useEffect(
+		() => {
+			if (start) {
+				props.dijkstra(grid);
+				setGrid(props.grid);
+				setStart(false);
+			}
+		},
+		[ start ]
+	);
+
+	const startVisualizer = () => {
+		setStart(true);
+	};
+
 	return (
 		<div style={dockStyle}>
-			<Icon image="menu-24px.svg" />
-			<Icon image="maze.icon.svg" />
-			<Icon image="weight.svg" />
-			<Icon image="algorithm.svg" />
-			<Icon image="bomb.svg" />
-			<Icon image="start.svg" />
+			<Icon image="menu-24px.svg" tip="Menu" />
+			<Icon image="maze.icon.svg" tip="Generate maze" />
+			<Icon image="weight.svg" tip="Add weight" />
+			<Icon image="algorithm.svg" tip="Choose Algorithm" />
+			<Icon image="bomb.svg" tip="Add bomb" />
+			<Icon image="start.svg" tip="Start Visualizer" action={startVisualizer} />
 		</div>
 	);
 };
 
-export default Dock;
+const mapStateToProps = (state) => ({
+	grid: state.grid
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	dijkstra: (grid) => dispatch(dijkstra(grid))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dock);

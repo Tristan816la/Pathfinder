@@ -1,38 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Node from './Node';
-const numRows = 15;
-const numCols = 45;
+import { generate, dijkstra } from '../redux/actions';
+import { numCols } from '../Constants';
 
-/* Node Status Constants */
-const EMPTY = 0;
-const WALL = 1;
-const VISITED = 2;
-const PATH = 3;
-const BOMB = 4;
-const WEIGHT = 5;
-const START = 6;
-const END = 7;
-
-/* Start & End */
-const defaultStartRow = 7;
-const defaultStartCol = 10;
-const defaultEndRow = 7;
-const defaultEndCol = 30;
-
-const Grid = () => {
+const Grid = (props) => {
+	const [ grid, setGrid ] = useState(props.grid);
 	const [ pressed, setPressed ] = useState(false);
 
-	const [ grid, setGrid ] = useState(() => {
-		const rows = [];
-		for (let i = 0; i < numRows; i++) {
-			rows.push(Array(numCols).fill(EMPTY));
-		}
-
-		rows[defaultStartRow][defaultStartCol] = START;
-		rows[defaultEndRow][defaultEndCol] = END;
-		return rows;
+	useEffect(() => {
+		console.log('hello');
 	});
-
 	const handleMouseDown = () => {
 		setPressed(true);
 	};
@@ -52,10 +30,33 @@ const Grid = () => {
 			onMouseUp={handleMouseUp}
 		>
 			{grid.map((rows, i) =>
-				rows.map((col, k) => <Node pressed={pressed} status={grid[i][k]} row={i} col={k} key={`${i}-${k}`} />)
+				rows.map((col, k) => {
+					const { isEnd, isStart, isWall, isVisited } = col;
+					return (
+						<Node
+							pressed={pressed}
+							isEnd={isEnd}
+							isStart={isStart}
+							isWall={isWall}
+							row={i}
+							col={k}
+							isVisited={isVisited}
+							key={`${i}-${k}`}
+						/>
+					);
+				})
 			)}
 		</div>
 	);
 };
 
-export default Grid;
+const mapStateToProps = (state) => ({
+	grid: state.grid
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	generate: () => dispatch(generate()),
+	dijkstra: (grid) => dispatch(dijkstra(grid))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Grid);
