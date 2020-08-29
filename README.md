@@ -1,3 +1,12 @@
+# How to run this?
+1. Clone the repo
+2. Run the following commands
+```
+npm install
+npm start
+```
+
+
 # Tasklist
 ## TODO:
 - Dijkstra algorithm
