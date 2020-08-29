@@ -1,3 +1,12 @@
+# How to run this project?
+1. Clone the repo
+2. Run the following commands
+```
+npm install
+npm start
+```
+![alt text](./Desktop/Version1.png "Demo")
+
 # Tasklist
 ## TODO:
 - Dijkstra algorithm
