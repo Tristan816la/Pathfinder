@@ -9,9 +9,8 @@ npm start
 
 # Tasklist
 ## TODO:
-- Dijkstra algorithm
-- Update Wall in grid using redux
-- Wall Status
+- Peripheral Nodes and Path Styles
+- Get Path
 - Clear all
 - Adjust starting and finishing point
 - Algorithm Reducers
@@ -32,3 +31,6 @@ npm start
 9. Connect grid using redux 
 10. Global Constants
 11. Change to node Object
+12. Dijkstra algorithm
+13. Dijkstra algorithm with wall yeah!
+14. Wall Status in Redux

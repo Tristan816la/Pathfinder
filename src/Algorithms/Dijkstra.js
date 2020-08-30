@@ -18,11 +18,11 @@ export const DijkstraFind = (grid, start, end) => {
 };
 
 const formGrid = (visitedNodesInOrder, grid) => {
-	let node;
-	for (node in visitedNodesInOrder) {
+	let result = [ ...grid ];
+	for (let node in visitedNodesInOrder) {
 		const row = visitedNodesInOrder[node].row;
 		const col = visitedNodesInOrder[node].col;
-		grid[row][col] = visitedNodesInOrder[node];
+		result[row][col] = visitedNodesInOrder[node];
 	}
-	return grid;
+	return result;
 };

@@ -5,12 +5,11 @@ import { generate, dijkstra } from '../redux/actions';
 import { numCols } from '../Constants';
 
 const Grid = (props) => {
-	const [ grid, setGrid ] = useState(props.grid);
+	const { grid } = props;
 	const [ pressed, setPressed ] = useState(false);
 
-	useEffect(() => {
-		console.log('hello');
-	});
+	useEffect(() => {}, []);
+
 	const handleMouseDown = () => {
 		setPressed(true);
 	};
@@ -31,16 +30,11 @@ const Grid = (props) => {
 		>
 			{grid.map((rows, i) =>
 				rows.map((col, k) => {
-					const { isEnd, isStart, isWall, isVisited } = col;
 					return (
 						<Node
 							pressed={pressed}
-							isEnd={isEnd}
-							isStart={isStart}
-							isWall={isWall}
 							row={i}
 							col={k}
-							isVisited={isVisited}
 							key={`${i}-${k}`}
 						/>
 					);

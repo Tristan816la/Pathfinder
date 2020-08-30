@@ -1,4 +1,4 @@
-import { SET_GRID } from '../redux/types';
+import { SET_GRID, SET_EMPTY, SET_WALL } from '../redux/types';
 import { generate_empty } from '../Algorithms/EmptyGrid';
 
 const initialState = {
@@ -11,6 +11,13 @@ const gridReducer = (state = initialState, action) => {
 			return {
 				...state,
 				grid: action.payload
+			};
+		case SET_WALL:
+			const row = action.payload[0];
+			const col = action.payload[1];
+			state.grid[row][col].isWall = true;
+			return {
+				...state
 			};
 		default:
 			return state;
