@@ -5,7 +5,7 @@
 npm install
 npm start
 ```
-![alt text](./Desktop/Version1.png "Demo")
+![Demo](./public/Version1.png)
 
 # Tasklist
 ## TODO:
