@@ -5,7 +5,8 @@
 npm install
 npm start
 ```
-![Demo](./public/Version1.png)
+Update: Unweighted Dijkstra is Working now
+![Demo](./public/Version2.png)
 
 # Tasklist
 ## TODO:
