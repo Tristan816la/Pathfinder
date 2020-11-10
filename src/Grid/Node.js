@@ -1,39 +1,58 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { setIsWall, setIsEmpty } from "../redux/actions";
-import { useSelector } from "react-redux";
+import { setIsWall, setIsEmpty, setIsFinish } from "../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import { defaultEndRow, defaultEndCol } from "../Constants";
 
 const NodeObj = styled.div`
-  width: 2vw;
-  height: 2vw;
+  width: 1.8vw;
+  height: 1.8vw;
   background-color: ${(props) =>
     props.isWall
       ? "black"
       : props.isStart
       ? "#42f563"
       : props.isEnd
-      ? "#eaff00"
+      ? "#FFB6C1"
       : props.isVisited
-      ? "blue"
+      ? "#1E90FF"
       : "undefined"};
-  border: solid 0.03vw black;
-  transition: background-color 0.2s ease-out;
+  border: solid 1px black;
+  transition: 0.3s ease-out;
 `;
 
 const Node = (props) => {
   const grid = useSelector((state) => state.grid);
+  const finished = useSelector((state) => state.algorithm.finished);
   const { pressed, row, col } = props;
   const { isStart, isEnd, isWall, isVisited, distance } = grid[row][col];
   const [start, setStart] = useState(isStart);
   const [end, setEnd] = useState(isEnd);
   const [wall, setWall] = useState(isWall);
   const [visited, setVisited] = useState(isVisited);
+  const dispatch = useDispatch();
+
+  const checkFinish = () => {
+    const dirs = [
+      [-1, 0],
+      [1, 0],
+      [0, -1],
+      [0, 1],
+    ];
+    for (let d of dirs) {
+      const [r, c] = d;
+      if (isVisited && row + r === defaultEndRow && col + c === defaultEndCol) {
+        dispatch(setIsFinish());
+      }
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setVisited(isVisited);
-    }, 50 * distance);
+      checkFinish();
+    }, 60 * distance);
   });
 
   useEffect(() => {
@@ -72,7 +91,7 @@ const Node = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  grid: state.grid,
+  grid: state.grid.grid,
 });
 
 const mapDispatchToProps = (dispatch) => ({

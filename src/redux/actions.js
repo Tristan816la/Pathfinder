@@ -1,4 +1,10 @@
-import { SET_GRID, SET_EMPTY, SET_WALL } from "../redux/types";
+import {
+  SET_GRID,
+  SET_EMPTY,
+  SET_WALL,
+  SET_ALGORITHM,
+  SET_FINISH,
+} from "../redux/types";
 import { generate_empty } from "../Algorithms/EmptyGrid";
 import { DijkstraFind } from "../Algorithms/Dijkstra";
 import {
@@ -7,6 +13,13 @@ import {
   defaultStartCol,
   defaultEndCol,
 } from "../Constants";
+
+export const setAlgorithm = (option) => {
+  return {
+    type: SET_ALGORITHM,
+    payload: option,
+  };
+};
 
 export const dijkstra = (grid) => {
   const start = grid[defaultStartRow][defaultStartCol];
@@ -52,5 +65,11 @@ export const setAllEmpty = () => {
   return {
     type: SET_GRID,
     payload: emptyGrid,
+  };
+};
+
+export const setIsFinish = () => {
+  return {
+    type: SET_FINISH,
   };
 };

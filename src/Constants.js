@@ -1,12 +1,10 @@
-export const numRows = 15;
-export const numCols = 45;
+export const numRows = 18;
+export const numCols = 54;
 
-export const defaultStartRow = 7;
-export const defaultStartCol = 10;
-export const defaultEndRow = 7;
-export const defaultEndCol = 30;
-
-
+export const defaultStartRow = 8;
+export const defaultStartCol = 12;
+export const defaultEndRow = 8;
+export const defaultEndCol = 38;
 
 /* Node Status Constants */
 export const EMPTY = "EMPTY";

@@ -24,7 +24,7 @@ const Grid = (props) => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 2vw)`,
+          gridTemplateColumns: `repeat(${numCols}, 1.8vw)`,
         }}
         className="grid"
         onMouseDown={handleMouseDown}
@@ -41,7 +41,7 @@ const Grid = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  grid: state.grid,
+  grid: state.grid.grid,
 });
 
 const mapDispatchToProps = (dispatch) => ({

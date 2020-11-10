@@ -1,9 +1,9 @@
 body {
-  margin: 0
+  margin: 0;
 }
 
 .grid {
   position: absolute;
   top: 23vh;
-  left: 5vw;
+  left: 1.3vw;
 }

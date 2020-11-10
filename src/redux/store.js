@@ -1,6 +1,15 @@
-import { createStore } from 'redux';
-import gridReducer from './reducer';
+import { createStore, combineReducers } from "redux";
+import gridReducer from "./reducers/gridreducer";
+import algorithmReducer from "./reducers/algorithmreducer";
 
-const store = createStore(gridReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const reducer = combineReducers({
+  grid: gridReducer,
+  algorithm: algorithmReducer,
+});
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
