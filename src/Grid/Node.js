@@ -1,26 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import { setIsWall, setIsEmpty, setIsFinish } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { defaultEndRow, defaultEndCol } from "../Constants";
-
-const NodeObj = styled.div`
-  width: 1.8vw;
-  height: 1.8vw;
-  background-color: ${(props) =>
-    props.isWall
-      ? "black"
-      : props.isStart
-      ? "#42f563"
-      : props.isEnd
-      ? "#FFB6C1"
-      : props.isVisited
-      ? "#1E90FF"
-      : "undefined"};
-  border: solid 1px black;
-  transition: 0.3s ease-out;
-`;
+import NodeObj from "../Styles/NodeStyle";
 
 const Node = (props) => {
   const grid = useSelector((state) => state.grid);

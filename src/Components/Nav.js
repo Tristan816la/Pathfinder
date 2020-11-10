@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import { Icon } from "./Icon";
 import Button from "@material-ui/core/Button";
-import { useDispatch } from "react-redux";
-import { setAllEmpty } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setAllEmpty, setPathEmpty } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +29,7 @@ const Nav = () => {
   const placeHolders = 15;
   const classes = useStyles();
   const dispatch = useDispatch();
+  const grid = useSelector((state) => state.grid);
 
   return (
     <div className={classes.root}>
@@ -38,7 +39,11 @@ const Nav = () => {
         {[...Array(placeHolders)].map((e, i) => (
           <div key={i} />
         ))}
-        <Button variant="h6" className={classes.navText}>
+        <Button
+          variant="h6"
+          className={classes.navText}
+          onClick={() => dispatch(setPathEmpty(grid))}
+        >
           Clear path
         </Button>
         <Button

@@ -68,6 +68,19 @@ export const setAllEmpty = () => {
   };
 };
 
+export const setPathEmpty = (grid) => {
+  const newGrid = grid.map((row) =>
+    row.map((node) => {
+      node.isVisited = false;
+      return node;
+    })
+  );
+  return {
+    type: SET_GRID,
+    payload: newGrid,
+  };
+};
+
 export const setIsFinish = () => {
   return {
     type: SET_FINISH,

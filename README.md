@@ -15,6 +15,7 @@ Update: Unweighted Dijkstra is Working now
 
 ## TODO:
 
+- Animate Finding Process
 - Peripheral Nodes and Path Styles
 - Get Path
 - Adjust starting and finishing point
